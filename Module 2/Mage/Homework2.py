@@ -18,7 +18,6 @@ def load_data_from_api(*args, **kwargs):
     url12 = 'https://github.com/DataTalksClub/nyc-tlc-data/releases/download/green/green_tripdata_2020-12.csv.gz'
 
 
-
     data_dtypes = {
     'VendorID': pd.Int64Dtype(),
     'passenger_count': pd.Int64Dtype(),
