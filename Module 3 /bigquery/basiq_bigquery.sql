@@ -25,3 +25,13 @@ CREATE OR REPLACE TABLE de-zoomcamp-412301.ny_taxi.yellow_tripdata_partitoned
 PARTITION BY 
     DATE(pickup_date) AS
     SELECT * FROM de-zoomcamp-412301.ny_taxi.external_yellow_tripdata_corrected;
+-- Impact of partition 
+-- Scaning 1.6GB of data 
+SELECT DISTINCT(VendorID)
+FROM de-zoomcamp-412301.ny_taxi.yellow_tripdata_non_partitoned
+WHERE DATE(pickup_date) BETWEEN '2019-06-01' AND '2019-06-30';
+
+
+-- Scanning 106 MB of Data 
+SELECT DISTINCT(VendorID)
+WHERE DATE(pickup_date) BETWEEN '2019-06-01' AND '2019-06-30';
