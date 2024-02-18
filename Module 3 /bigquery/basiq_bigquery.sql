@@ -16,3 +16,12 @@ ORDER BY pickup_date  ASC
 LIMIT 500 ;
 
 
+-- Create a no partitioned table from external table 
+CREATE OR REPLACE TABLE de-zoomcamp-412301.ny_taxi.external_yellow_tripdata_corrected AS
+SELECT * FROM de-zoomcamp-412301.ny_taxi.external_yellow_tripdata_corrected;
+
+--Create a partitioned table from external table 
+CREATE OR REPLACE TABLE de-zoomcamp-412301.ny_taxi.yellow_tripdata_partitoned
+PARTITION BY 
+    DATE(pickup_date) AS
+    SELECT * FROM de-zoomcamp-412301.ny_taxi.external_yellow_tripdata_corrected;
