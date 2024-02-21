@@ -48,3 +48,15 @@ PARTITION BY DATE(pickup_date)
 CLUSTER BY VendorID AS
 SELECT * FROM de-zoomcamp-412301.ny_taxi.external_yellow_tripdata_corrected;
 
+-- Query scans 1.1 GB
+SELECT count(*) AS trips
+FROM de-zoomcamp-412301.ny_taxi.yellow_tripdata_partitoned
+WHERE DATE(pickup_date) BETWEEN '2019-06-01' AND '2020-12-31'
+AND VendorID=1;
+
+-- Query scans 864.5 MB
+SELECT count(*) AS trips 
+FROM de-zoomcamp-412301.ny_taxi.yellow_tripdata_partitoned_clustered
+WHERE DATE(pickup_date) BETWEEN '2019-06-01' AND '2020-12-31'
+AND VendorID=1;
+
