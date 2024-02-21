@@ -35,3 +35,10 @@ WHERE DATE(pickup_date) BETWEEN '2019-06-01' AND '2019-06-30';
 -- Scanning 106 MB of Data 
 SELECT DISTINCT(VendorID)
 WHERE DATE(pickup_date) BETWEEN '2019-06-01' AND '2019-06-30';
+
+-- Let's look into the partitions
+SELECT table_name, partition_id, total_rows
+FROM `ny_taxi.INFORMATION_SCHEMA.PARTITIONS`
+WHERE table_name = 'yellow_tripdata_partitoned'
+ORDER BY total_rows DESC;
+
