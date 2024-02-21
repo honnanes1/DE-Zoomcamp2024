@@ -42,3 +42,9 @@ FROM `ny_taxi.INFORMATION_SCHEMA.PARTITIONS`
 WHERE table_name = 'yellow_tripdata_partitoned'
 ORDER BY total_rows DESC;
 
+-- Creating a patition and cluster table
+CREATE OR REPLACE TABLE de-zoomcamp-412301.ny_taxi.yellow_tripdata_partitoned_clustered
+PARTITION BY DATE(pickup_date)
+CLUSTER BY VendorID AS
+SELECT * FROM de-zoomcamp-412301.ny_taxi.external_yellow_tripdata_corrected;
+
