@@ -30,4 +30,32 @@ FROM
 WHERE
 tip_amount IS NOT NULL;
 
+-- check features 
+SELECT * FROM ML.FEATURE_INFO(MODEL `de-zoomcamp-412301.ny_taxi.tip_model`);
+-- Evaluate the model
+SELECT 
+* 
+FROM
+ML.EVALUATE(MODEL `de-zoomcamp-412301.ny_taxi.tip_model`,
+(
+SELECT
+*
+FROM
+`de-zoomcamp-412301.ny_taxi.yellow_tripdata_ml`
+WHERE
+tip_amount IS NOT NULL
+));
 
+-- PREDICT THE MODEL
+SELECT
+*
+FROM
+ML.PREDICT(MODEL `de-zoomcamp-412301.ny_taxi.tip_model`,
+(
+SELECT
+*
+FROM
+`de-zoomcamp-412301.ny_taxi.yellow_tripdata_ml`
+WHERE
+tip_amount IS NOT NULL
+));
